@@ -1,0 +1,58 @@
+/* 
+    Document   : CSSbaliho
+    Created on : Nov 7, 2014, 9:29:49 PM
+    Author     : HP
+    Description:
+        Purpose of the stylesheet follows.
+*/
+root { 
+    display: block;
+}
+.head{
+    background-color: #FFFFFF;
+}
+.footer{
+	height:80px;
+	background-color: #004A80;
+	opacity:.9;
+}
+ul#menu, ul#menu ul.sub-menu {
+	padding:0;
+ 	margin:0;
+ 	text-align:left;
+	background:#0DA8BF;
+	font-family:"Gatget";
+	font-size:18px;
+}
+
+ul#menu li, ul#menu ul.sub-menu li {
+ 	display:inline-block;
+ 	width:140px;
+}
+
+ul#menu li a, ul#menu li ul.sub-menu li a {
+ 	text-decoration:none;
+ 	color:#CCC;
+ 	background:#666;
+ 	padding:4px;
+ 	display:block;
+}
+
+ul#menu li a:hover, ul#menu li ul.sub-menu li a:hover {
+ 	background:#8A8A8A;
+	color:#FFF;
+}
+
+ul#menu li {
+ 	position:relative;
+}
+
+ul#menu li ul.sub-menu {
+ 	position: absolute;
+ 	top:30px;
+ 	display:none;
+}
+
+ul#menu li:hover ul.sub-menu {
+ 	display:block;
+}
