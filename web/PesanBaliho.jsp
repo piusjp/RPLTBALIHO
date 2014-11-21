@@ -98,7 +98,7 @@
         %>
         <form action="CheckOut.jsp" method="post">
             <input type="hidden" name="cart" value="<%=a%>"/>
-            <input type="submit" value="CHECKOUT"/>
+            <input type="image" src="Img/PJP.png" width="30px" height="30px" alt="submit button"/>
         </form>
         <div class="footer"><table width="2400"><tr><td>
                         <font face="Trebuchet MS, Arial, Helvetica, sans-serif" color="#FFFFFF" size="-1">&nbsp;&nbsp;&nbsp;Porewed by :</font><br/>

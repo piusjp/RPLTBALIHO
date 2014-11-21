@@ -14,8 +14,9 @@ import java.util.Date;
  * @author HP
  */
 public class DBpesan {
-    private String kode_pesan,kode_baliho,id_customer,nama,alamat,namaPerusahaan,alamatPerusahaan,noHp,email;
-    private Date tanggalSewa;
+    private String kode_pesan,kode_baliho1,kode_baliho2,kode_baliho3,
+            nama_customer,alamat_customer,namaPerusahaan,alamatPerusahaan,
+            batas_pembayaran,tanggal_mulai,noHp,email;
     private int lamaSewa;
     Connection conn;
 
@@ -24,15 +25,7 @@ public class DBpesan {
         dataHandler.getDBConnection();
         conn = dataHandler.conn;
     }
-    
-    public int getLamaSewa() {
-        return lamaSewa;
-    }
 
-    public void setLamaSewa(int lamaSewa) {
-        this.lamaSewa = lamaSewa;
-    }
-    
     public String getKode_pesan() {
         return kode_pesan;
     }
@@ -41,36 +34,44 @@ public class DBpesan {
         this.kode_pesan = kode_pesan;
     }
 
-    public String getKode_baliho() {
-        return kode_baliho;
+    public String getKode_baliho1() {
+        return kode_baliho1;
     }
 
-    public void setKode_baliho(String kode_baliho) {
-        this.kode_baliho = kode_baliho;
-    }
-    
-    public String getId_customer() {
-        return id_customer;
+    public void setKode_baliho1(String kode_baliho1) {
+        this.kode_baliho1 = kode_baliho1;
     }
 
-    public void setId_customer(String id_customer) {
-        this.id_customer = id_customer;
-    }
-    
-    public String getNama() {
-        return nama;
+    public String getKode_baliho2() {
+        return kode_baliho2;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setKode_baliho2(String kode_baliho2) {
+        this.kode_baliho2 = kode_baliho2;
     }
 
-    public String getAlamat() {
-        return alamat;
+    public String getKode_baliho3() {
+        return kode_baliho3;
     }
 
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
+    public void setKode_baliho3(String kode_baliho3) {
+        this.kode_baliho3 = kode_baliho3;
+    }
+
+    public String getNama_customer() {
+        return nama_customer;
+    }
+
+    public void setNama_customer(String nama_customer) {
+        this.nama_customer = nama_customer;
+    }
+
+    public String getAlamat_customer() {
+        return alamat_customer;
+    }
+
+    public void setAlamat_customer(String alamat_customer) {
+        this.alamat_customer = alamat_customer;
     }
 
     public String getNamaPerusahaan() {
@@ -89,6 +90,22 @@ public class DBpesan {
         this.alamatPerusahaan = alamatPerusahaan;
     }
 
+    public String getBatas_pembayaran() {
+        return batas_pembayaran;
+    }
+
+    public void setBatas_pembayaran(String batas_pembayaran) {
+        this.batas_pembayaran = batas_pembayaran;
+    }
+
+    public String getTanggal_mulai() {
+        return tanggal_mulai;
+    }
+
+    public void setTanggal_mulai(String tanggal_mulai) {
+        this.tanggal_mulai = tanggal_mulai;
+    }
+
     public String getNoHp() {
         return noHp;
     }
@@ -105,35 +122,36 @@ public class DBpesan {
         this.email = email;
     }
 
-    public Date getTanggalSewa() {
-        return tanggalSewa;
+    public int getLamaSewa() {
+        return lamaSewa;
     }
 
-   public void setTanggalSewa(Date tanggalSewa) {
-        this.tanggalSewa = tanggalSewa;
+    public void setLamaSewa(int lamaSewa) {
+        this.lamaSewa = lamaSewa;
     }
 
     public void tambahDataPesanPrepared(DBpesan dataPesan) throws SQLException {
         PreparedStatement pstmt = null;
         try {
             conn.setAutoCommit(false);
-            String sql = "insert into data_pemesanan(kode_pesan,kode_baliho"
-                    + ",id_customer,nama_customer,alamat_customer,nama_perusahaan"
+            String sql = "insert into data_pemesanan(kode_pesan,kode_baliho1,kode_baliho2"
+                    + ",kode_baliho3,nama_customer,alamat_customer,nama_perusahaan"
                     + ",alamat_perusahaan,batas_pembayaran,tanggal_mulai,no_telp,email,lama_sewa)"
-                    + "values (?,?,?,?,?,?,?,?,?,?,?)";
+                    + "values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, dataPesan.getKode_pesan());
-            pstmt.setString(2, dataPesan.getKode_baliho());
-            pstmt.setString(3, dataPesan.getId_customer());
-            pstmt.setString(4, dataPesan.getNama());
-            pstmt.setString(5, dataPesan.getAlamat());
-            pstmt.setString(6, dataPesan.getNamaPerusahaan());
-            pstmt.setString(7, dataPesan.getAlamatPerusahaan());
-            pstmt.setDate(8, (java.sql.Date) dataPesan.getTanggalSewa());
-            pstmt.setDate(9, (java.sql.Date) dataPesan.getTanggalSewa());
-            pstmt.setString(10, dataPesan.getNoHp());
-            pstmt.setString(11, dataPesan.getEmail());
-            pstmt.setInt(12, dataPesan.getLamaSewa());
+            pstmt.setString(2, dataPesan.getKode_baliho1());
+            pstmt.setString(3, dataPesan.getKode_baliho2());
+            pstmt.setString(4, dataPesan.getKode_baliho3());
+            pstmt.setString(5, dataPesan.getNama_customer());
+            pstmt.setString(6, dataPesan.getAlamat_customer());
+            pstmt.setString(7, dataPesan.getNamaPerusahaan());
+            pstmt.setString(8, dataPesan.getAlamatPerusahaan());
+            pstmt.setString(9, dataPesan.getBatas_pembayaran());
+            pstmt.setString(10, dataPesan.getTanggal_mulai());
+            pstmt.setString(11, dataPesan.getNoHp());
+            pstmt.setString(12, dataPesan.getEmail());
+            pstmt.setInt(13, dataPesan.getLamaSewa());
             pstmt.executeUpdate();
             conn.commit();
             System.out.println("Tambah Data Baliho Berhasil");
