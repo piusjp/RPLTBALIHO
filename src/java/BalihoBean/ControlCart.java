@@ -31,7 +31,7 @@ public class ControlCart extends HttpServlet {
         ArrayList cart = new ArrayList();
         ArrayList b = (ArrayList) session.getAttribute("cart");
 
-        String kb = request.getParameter("kodev");
+        String kb = request.getParameter("kode");
         if (session.getAttribute("cart") == null) {
             cart.add(kb);
         } else {
