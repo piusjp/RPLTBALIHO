@@ -29,7 +29,7 @@ public class ControlCart extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         ArrayList cart = new ArrayList();
-        ArrayList b = (ArrayList) session.getAttribute("cart");
+        ArrayList b = (ArrayList) session.getAttribute("PACE ASU");
 
         String kb = request.getParameter("kode");
         if (session.getAttribute("cart") == null) {
