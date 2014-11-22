@@ -16,7 +16,7 @@ import java.util.Date;
 public class DBpesan {
     private String kode_pesan,kode_baliho1,kode_baliho2,kode_baliho3,
             nama_customer,alamat_customer,namaPerusahaan,alamatPerusahaan,
-            batas_pembayaran,tanggal_mulai,noHp,email;
+            batas_pembayaran,tanggal_mulai,no_telp,email;
     private int lamaSewa;
     Connection conn;
 
@@ -27,11 +27,10 @@ public class DBpesan {
     }
 
     public String getKode_pesan() {
-        return kode_pesan;
-    }
-
-    public void setKode_pesan(String kode_pesan) {
-        this.kode_pesan = kode_pesan;
+        String code=""+getNama_customer().charAt(0)+
+                getNama_customer().charAt(getNama_customer().length()-1)+
+                getEmail().charAt(getEmail().length()/2)+getNo_telp().substring(0, 2);
+        return code;
     }
 
     public String getKode_baliho1() {
@@ -106,12 +105,12 @@ public class DBpesan {
         this.tanggal_mulai = tanggal_mulai;
     }
 
-    public String getNoHp() {
-        return noHp;
+    public String getNo_telp() {
+        return no_telp;
     }
 
-    public void setNoHp(String noHp) {
-        this.noHp = noHp;
+    public void setNo_telp(String no_telp) {
+        this.no_telp = no_telp;
     }
 
     public String getEmail() {
@@ -149,7 +148,7 @@ public class DBpesan {
             pstmt.setString(8, dataPesan.getAlamatPerusahaan());
             pstmt.setString(9, dataPesan.getBatas_pembayaran());
             pstmt.setString(10, dataPesan.getTanggal_mulai());
-            pstmt.setString(11, dataPesan.getNoHp());
+            pstmt.setString(11, dataPesan.getNo_telp());
             pstmt.setString(12, dataPesan.getEmail());
             pstmt.setInt(13, dataPesan.getLamaSewa());
             pstmt.executeUpdate();

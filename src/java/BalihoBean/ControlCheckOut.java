@@ -33,8 +33,6 @@ public class ControlCheckOut extends HttpServlet {
         DBpesan pesan = new DBpesan();
         HttpSession session = request.getSession();
         ArrayList isiCart = (ArrayList) session.getAttribute("cart");
-
-            pesan.setKode_pesan("a");
             pesan.setKode_baliho1("a");
             pesan.setKode_baliho2("a");
             pesan.setKode_baliho3("a");
@@ -44,7 +42,7 @@ public class ControlCheckOut extends HttpServlet {
             pesan.setAlamatPerusahaan(request.getParameter("alamatp"));
             pesan.setBatas_pembayaran("30-dec-1994");
             pesan.setTanggal_mulai("30-dec-1994");
-            pesan.setNoHp(request.getParameter("hp"));
+            pesan.setNo_telp(request.getParameter("hp"));
             pesan.setEmail(request.getParameter("email"));
             pesan.setLamaSewa(3);
         try {
