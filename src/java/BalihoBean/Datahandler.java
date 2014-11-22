@@ -8,7 +8,7 @@ import oracle.jdbc.pool.OracleDataSource;
 public class Datahandler {
     String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
     String userid = "hr";
-    String password = "125314054";
+    String password = "hr";
     Connection conn;
 
     public Datahandler() {

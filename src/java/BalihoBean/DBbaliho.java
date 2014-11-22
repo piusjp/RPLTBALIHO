@@ -16,6 +16,7 @@ import java.util.ArrayList;
  * @author HP
  */
 public class DBbaliho {
+
     private String kodeBaliho;
     private String lokasi;
     private int hargaSewa;
@@ -28,7 +29,7 @@ public class DBbaliho {
         dataHandler.getDBConnection();
         conn = dataHandler.conn;
     }
-    
+
     public DBbaliho(Connection koneksi) {
         this.conn = koneksi;
     }
@@ -72,6 +73,7 @@ public class DBbaliho {
     public void setUkuran(String ukuran) {
         this.ukuran = ukuran;
     }
+
     public ResultSet data_baliho() throws SQLException, Exception {
         Datahandler dataHandler = new Datahandler();
         dataHandler.getDBConnection();
@@ -81,5 +83,20 @@ public class DBbaliho {
 
         ResultSet rset = stmt.executeQuery(query);
         return rset;
+    }
+
+    public void updateStatusBaliho(String kode) throws SQLException {
+        try {
+            conn.setAutoCommit(false);
+            Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            String query = "update data_baliho set status='DIPESAN' where kode_baliho='" + kode + "'";
+            stmt.executeQuery(query);
+            conn.commit();
+            System.out.println("Tambah Data Jadwal Berhasil");
+        } catch (SQLException exception) {
+            conn.rollback();
+            System.out.println("Tambah Data Jadwal Pertandingan gagal = " + exception.getMessage());
+            throw exception;
+        }
     }
 }

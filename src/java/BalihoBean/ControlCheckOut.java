@@ -33,9 +33,8 @@ public class ControlCheckOut extends HttpServlet {
         DBpesan pesan = new DBpesan();
         HttpSession session = request.getSession();
         ArrayList isiCart = (ArrayList) session.getAttribute("cart");
-            pesan.setKode_baliho1("a");
-            pesan.setKode_baliho2("a");
-            pesan.setKode_baliho3("a");
+        for (int i = 0; i < isiCart.size(); i++) {
+            pesan.setKode_baliho((String) isiCart.get(i));
             pesan.setNama_customer(request.getParameter("nama"));
             pesan.setAlamat_customer(request.getParameter("alamat"));
             pesan.setNamaPerusahaan(request.getParameter("perusahaan"));
@@ -45,12 +44,12 @@ public class ControlCheckOut extends HttpServlet {
             pesan.setNo_telp(request.getParameter("hp"));
             pesan.setEmail(request.getParameter("email"));
             pesan.setLamaSewa(3);
-        try {
-            pesan.tambahDataPesanPrepared(pesan);
-        } catch (SQLException ex) {
-            Logger.getLogger(ControlCheckOut.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                pesan.tambahDataPesanPrepared(pesan);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControlCheckOut.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
 
         RequestDispatcher disp = request.getRequestDispatcher("/PesanBaliho.jsp");
         disp.forward(request, response);

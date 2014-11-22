@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
  * @author HP
  */
 public class tes {
+
     public static void main(String[] args) throws SQLException, Exception {
 //        DBbaliho d=new DBbaliho("ee", "AA", "AA", "1",200);
 //        d.TambahBaliho();
@@ -39,20 +40,16 @@ public class tes {
 //        for (int i = 0; i < a.size(); i++) {
 //            System.out.println(a.get(i));
 //        }
-        DBpesan d=new DBpesan();
-        d.setKode_pesan("a");
-            d.setKode_baliho1("a");
-            d.setKode_baliho2("a");
-            d.setKode_baliho3("a");
-            d.setNama_customer("a");
-            d.setAlamat_customer(("alamat"));
-            d.setNamaPerusahaan(("perusahaan"));
-            d.setAlamatPerusahaan(("alamatp"));
-            d.setBatas_pembayaran("30-dec-1994");
-            d.setTanggal_mulai("30-dec-1994");
-            d.setNoHp(("hp"));
-            d.setEmail(("email"));
-            d.setLamaSewa((10));
-            d.tambahDataPesanPrepared(d);
-        }
+        DBpesan d = new DBpesan();
+        d.setNama_customer("a");
+        d.setAlamat_customer(("alamat"));
+        d.setNamaPerusahaan(("perusahaan"));
+        d.setAlamatPerusahaan(("alamatp"));
+        d.setBatas_pembayaran("30-dec-1994");
+        d.setTanggal_mulai("30-dec-1994");
+        d.setNo_telp(("hp"));
+        d.setEmail(("email"));
+        d.setLamaSewa((10));
+        d.tambahDataPesanPrepared(d);
+    }
 }

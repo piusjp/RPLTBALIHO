@@ -6,7 +6,9 @@ package BalihoBean;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 
 /**
@@ -14,9 +16,10 @@ import java.util.Date;
  * @author HP
  */
 public class DBpesan {
-    private String kode_pesan,kode_baliho1,kode_baliho2,kode_baliho3,
-            nama_customer,alamat_customer,namaPerusahaan,alamatPerusahaan,
-            batas_pembayaran,tanggal_mulai,no_telp,email;
+
+    private String kode_pesan, kode_baliho,
+            nama_customer, alamat_customer, namaPerusahaan, alamatPerusahaan,
+            batas_pembayaran, tanggal_mulai, no_telp, email;
     private int lamaSewa;
     Connection conn;
 
@@ -27,34 +30,18 @@ public class DBpesan {
     }
 
     public String getKode_pesan() {
-        String code=""+getNama_customer().charAt(0)+
-                getNama_customer().charAt(getNama_customer().length()-1)+
-                getEmail().charAt(getEmail().length()/2)+getNo_telp().substring(0, 2);
+        String code = "" + getNama_customer().charAt(0)
+                + getNama_customer().charAt(getNama_customer().length() - 1)
+                + getEmail().charAt(getEmail().length() / 2) + getNo_telp().substring(0, 2);
         return code;
     }
 
-    public String getKode_baliho1() {
-        return kode_baliho1;
+    public String getKode_baliho() {
+        return kode_baliho;
     }
 
-    public void setKode_baliho1(String kode_baliho1) {
-        this.kode_baliho1 = kode_baliho1;
-    }
-
-    public String getKode_baliho2() {
-        return kode_baliho2;
-    }
-
-    public void setKode_baliho2(String kode_baliho2) {
-        this.kode_baliho2 = kode_baliho2;
-    }
-
-    public String getKode_baliho3() {
-        return kode_baliho3;
-    }
-
-    public void setKode_baliho3(String kode_baliho3) {
-        this.kode_baliho3 = kode_baliho3;
+    public void setKode_baliho(String kode_baliho) {
+        this.kode_baliho = kode_baliho;
     }
 
     public String getNama_customer() {
@@ -133,26 +120,25 @@ public class DBpesan {
         PreparedStatement pstmt = null;
         try {
             conn.setAutoCommit(false);
-            String sql = "insert into data_pemesanan(kode_pesan,kode_baliho1,kode_baliho2"
-                    + ",kode_baliho3,nama_customer,alamat_customer,nama_perusahaan"
-                    + ",alamat_perusahaan,batas_pembayaran,tanggal_mulai,no_telp,email,lama_sewa)"
-                    + "values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into data_pemesanan(kode_pesan,kode_baliho,nama_customer,alamat_customer,"
+                    + "nama_perusahaan,alamat_perusahaan,batas_pembayaran,tanggal_mulai,no_telp,email,lama_sewa)"
+                    + "values (?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, dataPesan.getKode_pesan());
-            pstmt.setString(2, dataPesan.getKode_baliho1());
-            pstmt.setString(3, dataPesan.getKode_baliho2());
-            pstmt.setString(4, dataPesan.getKode_baliho3());
-            pstmt.setString(5, dataPesan.getNama_customer());
-            pstmt.setString(6, dataPesan.getAlamat_customer());
-            pstmt.setString(7, dataPesan.getNamaPerusahaan());
-            pstmt.setString(8, dataPesan.getAlamatPerusahaan());
-            pstmt.setString(9, dataPesan.getBatas_pembayaran());
-            pstmt.setString(10, dataPesan.getTanggal_mulai());
-            pstmt.setString(11, dataPesan.getNo_telp());
-            pstmt.setString(12, dataPesan.getEmail());
-            pstmt.setInt(13, dataPesan.getLamaSewa());
+            pstmt.setString(2, dataPesan.getKode_baliho());
+            pstmt.setString(3, dataPesan.getNama_customer());
+            pstmt.setString(4, dataPesan.getAlamat_customer());
+            pstmt.setString(5, dataPesan.getNamaPerusahaan());
+            pstmt.setString(6, dataPesan.getAlamatPerusahaan());
+            pstmt.setString(7, dataPesan.getBatas_pembayaran());
+            pstmt.setString(8, dataPesan.getTanggal_mulai());
+            pstmt.setString(9, dataPesan.getNo_telp());
+            pstmt.setString(10, dataPesan.getEmail());
+            pstmt.setInt(11, dataPesan.getLamaSewa());
             pstmt.executeUpdate();
+            DBbaliho db=new DBbaliho();
             conn.commit();
+            db.updateStatusBaliho(dataPesan.getKode_baliho());
             System.out.println("Tambah Data Baliho Berhasil");
         } catch (SQLException exception) {
             conn.rollback();
