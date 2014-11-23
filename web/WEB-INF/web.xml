@@ -12,6 +12,10 @@
         <servlet-name>ControlCheckOut</servlet-name>
         <servlet-class>BalihoBean.ControlCheckOut</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlCekSewa</servlet-name>
+        <servlet-class>BalihoBean.ControlCekSewa</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControlCart</servlet-name>
         <url-pattern>/ControlCart</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>ControlCheckOut</servlet-name>
         <url-pattern>/ControlCheckOut</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlCekSewa</servlet-name>
+        <url-pattern>/ControlCekSewa</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

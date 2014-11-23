@@ -28,6 +28,16 @@ and open the template in the editor.
             <li><a href="#">Contact</a></li>
         </ul>
         
+        <form  action="ControlCekSewa" method="post">
+            <table cellpadding="8">
+                <tr>
+                    <td>No.bayar</td>
+                    <td><input type="text" name="nobar"/></td>
+                    <td><input type="submit" name="cek"/></td>
+                </tr>
+            </table>
+        </form>
+        
         <div class="footer"><table width="2400"><tr><td>
                         <font face="Trebuchet MS, Arial, Helvetica, sans-serif" color="#FFFFFF" size="-1">&nbsp;&nbsp;&nbsp;Porewed by :</font><br/>
                         <a href="#"><img src="Img/PJP.png" hspace="10" height="40px" width="40px" title="PJP" /></a>

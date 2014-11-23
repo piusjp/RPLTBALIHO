@@ -85,6 +85,22 @@ public class DBbaliho {
         return rset;
     }
 
+    public String search(String keyword, String searchData) throws SQLException, Exception {
+
+        Datahandler dataHandler = new Datahandler();
+        dataHandler.getDBConnection();
+        Connection conn = dataHandler.conn;
+        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        String query = "select * from data_baliho where KODE_BALIHO='" + keyword + "'";
+
+        ResultSet rset = stmt.executeQuery(query);
+        String seacrh = "";
+        while (rset.next()) {
+            seacrh = rset.getString(searchData);
+        }
+        return seacrh;
+    }
+    
     public void updateDipesan(String kode) throws SQLException {
         try {
             conn.setAutoCommit(false);

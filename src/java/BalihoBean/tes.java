@@ -44,10 +44,10 @@ public class tes {
 //            System.out.println(a.get(i));
 //        }
         
-        Date date = new Date();
-        Date tomorrow = new Date(date.getTime() + (1000 * 60 * 60 * 24));
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        System.out.println(sdf.format(tomorrow));
+//        Date date = new Date();
+//        Date tomorrow = new Date(date.getTime() + (1000 * 60 * 60 * 24));
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+//        System.out.println(sdf.format(tomorrow));
         
         
 //        DBpesan d = new DBpesan();
@@ -61,5 +61,12 @@ public class tes {
 //        d.setEmail(("email"));
 //        d.setLamaSewa((10));
 //        d.tambahDataPesanPrepared(d);
+        
+//        DBtransaksi d=new DBtransaksi();
+//        System.out.println(d.CekNobar("34"));d.CekNobar("34");
+        
+        
+        DBtransaksi transaksi=new DBtransaksi();
+        System.out.println(transaksi.search("34","kode_sewa").substring(0,5));
     }
 }

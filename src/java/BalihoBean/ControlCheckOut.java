@@ -38,8 +38,8 @@ public class ControlCheckOut extends HttpServlet {
         ArrayList isiCart = (ArrayList) session.getAttribute("cart");
         
         Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Date tomorrow = new Date(date.getTime() + (1000 * 60 * 60 * 24));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+        Date tomorrow = new Date(date.getTime() + (1000 * 60 * 60 * 48));
         
         for (int i = 0; i < isiCart.size(); i++) {
             pesan.setKode_baliho((String) isiCart.get(i));
