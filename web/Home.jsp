@@ -9,6 +9,10 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="Img/Icon.png" rel="ICON">
         <link rel="stylesheet" type="text/css" href="CSSbaliho.css"/>
+        <style type="text/css">
+        body {margin: 0;padding: 0;min-width: 100%!important;}
+        .content {width: 100%;max-width: 600px;}
+        </style>
     </head>
     <body>
         <div class="head">
@@ -42,7 +46,7 @@ and open the template in the editor.
             </div>
             <br/>
         </div>
-        <div class="footer"><table width="2400"><tr><td>
+        <div class="footer"><table width="2400" id="wrap"><tr><td>
                         <font face="Trebuchet MS, Arial, Helvetica, sans-serif" color="#FFFFFF" size="-1">&nbsp;&nbsp;&nbsp;Porewed by :</font><br/>
                         <a href="#"><img src="Img/PJP.png" hspace="10" height="40px" width="40px" title="PJP" /></a>
                         <a href="http://usd.ac.id/" target="_blank"><img src="Img/LOGO UNIVERSITAS SANATA DHARMA 2.png" height="40px" width="40px" title="Universitas Sanata Dharma"/></a>
