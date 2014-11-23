@@ -85,7 +85,7 @@ public class DBbaliho {
         return rset;
     }
 
-    public void updateStatusBaliho(String kode) throws SQLException {
+    public void updateDipesan(String kode) throws SQLException {
         try {
             conn.setAutoCommit(false);
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);

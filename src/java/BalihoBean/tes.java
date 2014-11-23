@@ -7,7 +7,10 @@ package BalihoBean;
 import com.sun.corba.se.impl.orbutil.ORBConstants;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -40,16 +43,23 @@ public class tes {
 //        for (int i = 0; i < a.size(); i++) {
 //            System.out.println(a.get(i));
 //        }
-        DBpesan d = new DBpesan();
-        d.setNama_customer("a");
-        d.setAlamat_customer(("alamat"));
-        d.setNamaPerusahaan(("perusahaan"));
-        d.setAlamatPerusahaan(("alamatp"));
-        d.setBatas_pembayaran("30-dec-1994");
-        d.setTanggal_mulai("30-dec-1994");
-        d.setNo_telp(("hp"));
-        d.setEmail(("email"));
-        d.setLamaSewa((10));
-        d.tambahDataPesanPrepared(d);
+        
+        Date date = new Date();
+        Date tomorrow = new Date(date.getTime() + (1000 * 60 * 60 * 24));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        System.out.println(sdf.format(tomorrow));
+        
+        
+//        DBpesan d = new DBpesan();
+//        d.setNama_customer("a");
+//        d.setAlamat_customer(("alamat"));
+//        d.setNamaPerusahaan(("perusahaan"));
+//        d.setAlamatPerusahaan(("alamatp"));
+//        d.setBatas_pembayaran("30-dec-1994");
+//        d.setTanggal_mulai("30-dec-1994");
+//        d.setNo_telp(("hp"));
+//        d.setEmail(("email"));
+//        d.setLamaSewa((10));
+//        d.tambahDataPesanPrepared(d);
     }
 }

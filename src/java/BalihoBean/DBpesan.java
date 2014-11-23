@@ -138,7 +138,7 @@ public class DBpesan {
             pstmt.executeUpdate();
             DBbaliho db=new DBbaliho();
             conn.commit();
-            db.updateStatusBaliho(dataPesan.getKode_baliho());
+            db.updateDipesan(dataPesan.getKode_baliho());
             System.out.println("Tambah Data Baliho Berhasil");
         } catch (SQLException exception) {
             conn.rollback();

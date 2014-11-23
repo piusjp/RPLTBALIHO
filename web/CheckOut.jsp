@@ -42,7 +42,7 @@
                 </tr>
                 <tr>
                     <td>Nama Perusahaan</td>
-                    <td><input type="text" name="perusahaan"/></td>
+                    <td><input type="text" name="namaP"/></td>
                 </tr>
                 <tr>
                     <td>Alamat Perusahaan</td>
@@ -50,7 +50,7 @@
                 </tr>
                 <tr>
                     <td>No. HP</td>
-                    <td><input type="text" name="hp"/></td>
+                    <td><input type="text" name="no_telp"/></td>
                 </tr>
                 <tr>
                     <td>email</td>
@@ -59,6 +59,10 @@
                 <tr>
                     <td>Mulai sewa</td>
                     <td><input type="text" name="mulai"/></td>
+                </tr>
+                <tr>
+                    <td>lama sewa</td>
+                    <td><input type="text" name="lama"/></td>
                 </tr>
                 <tr>
                     <td></td>

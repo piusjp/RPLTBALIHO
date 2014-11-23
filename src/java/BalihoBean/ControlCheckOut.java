@@ -8,7 +8,9 @@ package BalihoBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -30,20 +32,26 @@ public class ControlCheckOut extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        
         DBpesan pesan = new DBpesan();
         HttpSession session = request.getSession();
         ArrayList isiCart = (ArrayList) session.getAttribute("cart");
+        
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date tomorrow = new Date(date.getTime() + (1000 * 60 * 60 * 24));
+        
         for (int i = 0; i < isiCart.size(); i++) {
             pesan.setKode_baliho((String) isiCart.get(i));
             pesan.setNama_customer(request.getParameter("nama"));
             pesan.setAlamat_customer(request.getParameter("alamat"));
-            pesan.setNamaPerusahaan(request.getParameter("perusahaan"));
-            pesan.setAlamatPerusahaan(request.getParameter("alamatp"));
-            pesan.setBatas_pembayaran("30-dec-1994");
-            pesan.setTanggal_mulai("30-dec-1994");
-            pesan.setNo_telp(request.getParameter("hp"));
+            pesan.setNamaPerusahaan(request.getParameter("namaP"));
+            pesan.setAlamatPerusahaan(request.getParameter("alamatP"));
+            pesan.setBatas_pembayaran(sdf.format(tomorrow));
+            pesan.setTanggal_mulai(request.getParameter("mulai"));
+            pesan.setNo_telp(request.getParameter("no_telp"));
             pesan.setEmail(request.getParameter("email"));
-            pesan.setLamaSewa(3);
+            pesan.setLamaSewa(Integer.parseInt(request.getParameter("lama")));
             try {
                 pesan.tambahDataPesanPrepared(pesan);
             } catch (SQLException ex) {
