@@ -32,21 +32,24 @@ public class ControlCekSewa extends HttpServlet {
 
         DBtransaksi transaksi = new DBtransaksi();
         DBsewa sewa = new DBsewa();
+        DBpesan pesan = new DBpesan();
         String nobar = request.getParameter("nobar");
         try {
             if (transaksi.CekNobar(nobar) == 1) {
                 String kode_pesan = transaksi.search(nobar, "kode_sewa").substring(0, 5);
-                sewa.setKode_sewa(transaksi.search(nobar, "kode_sewa"));
-                sewa.setKode_baliho((String) isiCart.get(i));
-                sewa.setNama_customer(request.getParameter("nama"));
-                sewa.setAlamat_customer(request.getParameter("alamat"));
-                sewa.setNamaPerusahaan(request.getParameter("namaP"));
-                sewa.setAlamatPerusahaan(request.getParameter("alamatP"));
-                sewa.setBatas_pembayaran(sdf.format(tomorrow));
-                sewa.setTanggal_mulai(request.getParameter("mulai"));
-                sewa.setNo_telp(request.getParameter("no_telp"));
-                sewa.setEmail(request.getParameter("email"));
-                sewa.setLamaSewa(Integer.parseInt(request.getParameter("lama")));
+//                for (int i = 0; i < pesan.hitungPesan(kode_pesan); i++) {
+                    sewa.setKode_sewa(transaksi.search(nobar, "kode_sewa"));
+                    sewa.setKode_baliho("a");
+                    sewa.setNama_customer(pesan.search(kode_pesan, "nama_customer"));
+                    sewa.setAlamat_customer(pesan.search(kode_pesan, "alamat_customer"));
+                    sewa.setNamaPerusahaan(pesan.search(kode_pesan, "nama_perusahaan"));
+                    sewa.setAlamatPerusahaan(pesan.search(kode_pesan, "alamat_perusahaan"));
+                    sewa.setTanggal_mulai(pesan.search(kode_pesan, "tanggal_mulai"));
+                    sewa.setTanggal_berakhir(pesan.search(kode_pesan, "tanggal_mulai"));
+                    sewa.setNo_telp(pesan.search(kode_pesan, "no_telp"));
+                    sewa.setEmail(pesan.search(kode_pesan, "email"));
+                    sewa.tambahDataSewaPrepared(sewa);
+//                }
                 RequestDispatcher disp = request.getRequestDispatcher("/BalihoTersewa.jsp");
                 disp.forward(request, response);
             } else {

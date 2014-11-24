@@ -89,6 +89,7 @@ public class DBtransaksi {
         while (rset.next()) {
             seacrh = rset.getString(searchData);
         }
+        conn.commit();
         return seacrh;
     }
 }

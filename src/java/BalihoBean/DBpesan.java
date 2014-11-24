@@ -169,6 +169,23 @@ public class DBpesan {
         while (rset.next()) {
             seacrh = rset.getString(searchData);
         }
+        conn.commit();
         return seacrh;
+    }
+    
+    public Integer hitungPesan(String kodePesan) throws SQLException {
+        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        String sql = "select count(*) AS jumlah from data_pemesanan where kode_pesan='"+kodePesan+"'";
+        int jumlahBaliho = 0;
+        try {
+            ResultSet rset = stmt.executeQuery(sql);
+            while (rset.next()) {
+                jumlahBaliho = rset.getInt("jumlah");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Gagal hitung jumlah baliho = " + ex.getMessage());
+        }
+        conn.commit();
+        return jumlahBaliho;
     }
 }

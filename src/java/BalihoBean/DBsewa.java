@@ -5,6 +5,8 @@
 package BalihoBean;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  *
@@ -102,5 +104,42 @@ public class DBsewa {
         this.email = email;
     }
     
-    
+    public void tambahDataSewaPrepared(DBsewa dataSewa) throws SQLException {
+        PreparedStatement pstmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String sql = "insert into data_penyewaan(kode_sewa,kode_baliho,nama_customer,alamat_customer,"
+                    + "nama_perusahaan,alamat_perusahaan,tanggal_mulai,tanggal_berakhir,no_telepon,email)"
+                    + "values (?,?,?,?,?,?,?,?,?,?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, dataSewa.getKode_sewa());
+            pstmt.setString(2, dataSewa.getKode_baliho());
+            pstmt.setString(3, dataSewa.getNama_customer());
+            pstmt.setString(4, dataSewa.getAlamat_customer());
+            pstmt.setString(5, dataSewa.getNamaPerusahaan());
+            pstmt.setString(6, dataSewa.getAlamatPerusahaan());
+            pstmt.setString(7, dataSewa.getTanggal_mulai());
+            pstmt.setString(8, dataSewa.getTanggal_berakhir());
+            pstmt.setString(9, dataSewa.getNo_telp());
+            pstmt.setString(10, dataSewa.getEmail());
+            pstmt.executeUpdate();
+            DBbaliho db=new DBbaliho();
+            conn.commit();
+            db.updateDipesan(dataSewa.getKode_baliho());
+            System.out.println("Tambah Data Baliho Berhasil");
+        } catch (SQLException exception) {
+            conn.rollback();
+            System.out.println("Tambah Data Baliho gagal = " + exception.getMessage());
+            throw exception;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException exception) {
+                throw exception;
+            }
+        }
+    }
 }

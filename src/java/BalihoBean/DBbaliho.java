@@ -82,6 +82,7 @@ public class DBbaliho {
         String query = "select * from data_baliho";
 
         ResultSet rset = stmt.executeQuery(query);
+        conn.commit();
         return rset;
     }
 
@@ -98,6 +99,7 @@ public class DBbaliho {
         while (rset.next()) {
             seacrh = rset.getString(searchData);
         }
+        conn.commit();
         return seacrh;
     }
     
