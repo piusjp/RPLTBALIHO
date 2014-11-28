@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package BalihoBean;
 
 import java.io.IOException;
@@ -18,18 +17,23 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dion Wisnu
  */
-@WebServlet(name = "ControlCekLoginOwner", urlPatterns = {"/ControlCekLoginOwner"})
-public class ControlCekLoginOwner extends HttpServlet {
+@WebServlet(name = "ControlCekMenuOwner", urlPatterns = {"/ControlCekMenuOwner"})
+public class OwnerCekMenu extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String inUsername = request.getParameter("username");
-        String inPassword = request.getParameter("password");
+        String tombolOwner = request.getParameter("tombolMenuOwner");
 
-        if (inUsername.equals("bias") && inPassword.equals("bias")){
-            response.sendRedirect("FormMenuOwner.jsp");
+        if (tombolOwner.equals("Lihat Baliho")) {
+            response.sendRedirect("OwnerLihatBaliho.jsp");
+        } else if (tombolOwner.equals("Laporan Bulanan")) {
+            response.sendRedirect("OwnerLaporanBulanan.jsp");
+        } else if (tombolOwner.equals("Logout")) {
+            response.sendRedirect("OwnerFormLogin.jsp");
         } else {
-            response.sendRedirect("FormLoginOwner.jsp?error=y");
+
         }
     }
+
 }

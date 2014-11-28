@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="BalihoBean.*" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -26,7 +27,7 @@
     </head>
 
     <body>
-        <h1 class="title">Halaman Login Admin</h1>
+        <h1 class="title">Halaman Login Owner</h1>
         <p>&nbsp;</p>
         <%try {
                 if (request.getParameter("error").equals("y")) {
@@ -38,7 +39,7 @@
                 } catch (Exception e) {
                 }
             %>
-        <form action="AdminServlet" method="post">
+        <form action="OwnerCekLogin" method="post">
             <table width="255" border="0" align="center">
                 <tr>
                     <td width="97">Username</td>

@@ -16,6 +16,18 @@
         <servlet-name>ControlCekSewa</servlet-name>
         <servlet-class>BalihoBean.ControlCekSewa</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OwnerCekLogin</servlet-name>
+        <servlet-class>BalihoBean.OwnerCekLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OwnerCekMenu</servlet-name>
+        <servlet-class>BalihoBean.OwnerCekMenu</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OwnerCekLaporan</servlet-name>
+        <servlet-class>BalihoBean.OwnerCekLaporan</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControlCart</servlet-name>
         <url-pattern>/ControlCart</url-pattern>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>ControlCekSewa</servlet-name>
         <url-pattern>/ControlCekSewa</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OwnerCekLogin</servlet-name>
+        <url-pattern>/OwnerCekLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OwnerCekMenu</servlet-name>
+        <url-pattern>/OwnerCekMenu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OwnerCekLaporan</servlet-name>
+        <url-pattern>/OwnerCekLaporan</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
