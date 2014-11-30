@@ -77,6 +77,25 @@
 
         <h3 align="center" style="color: black">Laporan Bulanan</h3>
         <h3 align="center" style="color: black">Bulan : <% out.print(bulan); %> Tahun : <% out.print(tahun); %> </h3>
+        <p>&nbsp;</p>
+         <table width="736" border="2" align="center">
+            <tr>
+                <td width="90" align="center">ID</td>
+                <td width="150" align="center">Nama</td>
+                <td width="150" align="center">No Telp</td>
+                <td width="300" align="center">Alamat</td>
+            </tr>
+            <% 
+                    //for(int i=0;i<listSupir.size();i++){ %>
+            <tr>
+                <td>&nbsp <% //out.print(listSupir.get(i).getIdSupir()); %> </td>
+                <td>&nbsp <% //out.print(listSupir.get(i).getNamaSupir()); %> </td>
+                <td>&nbsp <% //out.print(listSupir.get(i).getNomorHP()); %> </td>
+                <td>&nbsp <% //out.print(listSupir.get(i).getAlamat()); %> </td>
+            </tr>
+           <%}%>
+        </table>
+        
             <%                             } else if (request.getParameter("laporan").equals("n")) {
                 %>
                 <h3 align="center" style="color: red">Gagal Membuat Laporan,</h3>
