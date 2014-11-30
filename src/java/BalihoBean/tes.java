@@ -62,13 +62,13 @@ public class tes {
 //        DBtransaksi d=new DBtransaksi();
 //        System.out.println(d.CekNobar("34"));d.CekNobar("34");
 //        
-        DBtransaksi transaksi=new DBtransaksi();
+        DBtransaksi transaksi = new DBtransaksi();
 //        System.out.println(transaksi.search("34","kode_sewa").substring(0,5));
 //        String kode_pesan = transaksi.search("34", "kode_sewa").substring(0, 5);
 //        DBpesan d=new DBpesan();
 //        System.out.println(d.search(kode_pesan, "nama_customer"));d.search(kode_pesan, "nama_customer");
 //        
-        
+
 //        DBsewa sewa = new DBsewa();
 //        sewa.setKode_sewa("a");
 //        sewa.setKode_baliho("a");
@@ -81,10 +81,20 @@ public class tes {
 //        sewa.setNo_telp("a");
 //        sewa.setEmail("a");
 //        sewa.tambahDataSewaPrepared(sewa);
+//        DBpesan pesan=new DBpesan();
+//        String kode_pesan = transaksi.search("34", "kode_sewa").substring(0, 5);
+//        System.out.println(kode_pesan);
+//        System.out.println(pesan.hitungPesan(kode_pesan));
         
-        DBpesan pesan=new DBpesan();
-        String kode_pesan = transaksi.search("34", "kode_sewa").substring(0, 5);
-        System.out.println(kode_pesan);
-        System.out.println(pesan.hitungPesan(kode_pesan));
+        Datahandler dh = new Datahandler();
+        dh.getDBConnection();
+        ControlLaporanBulanan lprnBln = new ControlLaporanBulanan();
+        try {
+//            lprnBln.lihatLaporanBulanan("NOV", "14");
+            lprnBln.laporan();
+            System.out.println("Berhasil ");
+        } catch (SQLException ex) {
+            System.out.println("gagal : " + ex.getMessage());
+        }
     }
 }

@@ -20,6 +20,7 @@ public class Datahandler {
             ds = new OracleDataSource();
             ds.setURL(jdbcUrl);
             conn = ds.getConnection(userid, password);
+            System.out.println("Koneksi sip no..");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Gagal Koneksi");
         }
