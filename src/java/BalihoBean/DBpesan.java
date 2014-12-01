@@ -188,4 +188,19 @@ public class DBpesan {
         conn.commit();
         return jumlahBaliho;
     }
+    
+    public void HapusDataPesan(String kodePesan) throws SQLException {
+        PreparedStatement statement = null;
+        ResultSet result = null;
+        try {
+            statement = conn.prepareStatement("delete from data_pemesanan where kode_pesan = '" + kodePesan + "'");
+            result = statement.executeQuery();
+            conn.commit();
+            System.out.println("Hapus Berhasil");
+        } catch (SQLException exception) {
+            conn.rollback();
+            System.out.println("Hapus gagal :" + exception.getMessage());
+            throw exception;
+        }
+    }
 }

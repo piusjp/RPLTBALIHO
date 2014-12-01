@@ -6,18 +6,23 @@ package BalihoBean;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
  * @author HP
  */
 public class DBsewa {
+
     private String kode_sewa, kode_baliho,
             nama_customer, alamat_customer, namaPerusahaan, alamatPerusahaan,
             tanggal_mulai, tanggal_berakhir, no_telp, email;
     Connection conn;
-    
+    DBbaliho db=new DBbaliho();
+    DBpesan pesan=new DBpesan();
+
     public DBsewa() {
         Datahandler dataHandler = new Datahandler();
         dataHandler.getDBConnection();
@@ -103,43 +108,36 @@ public class DBsewa {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    public void tambahDataSewaPrepared(DBsewa dataSewa) throws SQLException {
-        PreparedStatement pstmt = null;
+
+    public void copyData(String kodePesan,String nobar) throws SQLException {
         try {
             conn.setAutoCommit(false);
-            String sql = "insert into data_penyewaan(kode_sewa,kode_baliho,nama_customer,alamat_customer,"
-                    + "nama_perusahaan,alamat_perusahaan,tanggal_mulai,tanggal_berakhir,no_telepon,email)"
-                    + "values (?,?,?,?,?,?,?,?,?,?)";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, dataSewa.getKode_sewa());
-            pstmt.setString(2, dataSewa.getKode_baliho());
-            pstmt.setString(3, dataSewa.getNama_customer());
-            pstmt.setString(4, dataSewa.getAlamat_customer());
-            pstmt.setString(5, dataSewa.getNamaPerusahaan());
-            pstmt.setString(6, dataSewa.getAlamatPerusahaan());
-            pstmt.setString(7, dataSewa.getTanggal_mulai());
-            pstmt.setString(8, dataSewa.getTanggal_berakhir());
-            pstmt.setString(9, dataSewa.getNo_telp());
-            pstmt.setString(10, dataSewa.getEmail());
-            pstmt.executeUpdate();
-            DBbaliho db=new DBbaliho();
+            Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            String query = "insert into data_penyewaan (kode_sewa, kode_baliho, nama_customer, alamat_customer, nama_perusahaan, alamat_perusahaan,tanggal_mulai,tanggal_berakhir,no_telp,email)\n"
+                    + "select CONCAT(kode_pesan,'"+nobar+"'), kode_baliho, nama_customer, alamat_customer, nama_perusahaan, alamat_perusahaan, tanggal_mulai,ADD_MONTHS(tanggal_mulai,lama_sewa),no_telp,email from data_pemesanan\n"
+                    + "where kode_pesan='"+kodePesan+"'";
+            stmt.executeQuery(query);
+            updateDisewa(kodePesan);
+            pesan.HapusDataPesan(kodePesan);
             conn.commit();
-            db.updateDipesan(dataSewa.getKode_baliho());
-            System.out.println("Tambah Data Baliho Berhasil");
         } catch (SQLException exception) {
             conn.rollback();
-            System.out.println("Tambah Data Baliho gagal = " + exception.getMessage());
+            System.out.println("Tambah Data Jadwal Pertandingan gagal = " + exception.getMessage());
             throw exception;
-        } finally {
-            try {
-                conn.setAutoCommit(true);
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (SQLException exception) {
-                throw exception;
-            }
+        }
+    }
+    public void updateDisewa(String kodePesan) throws SQLException {
+        try {
+            conn.setAutoCommit(false);
+            Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            String query = "update data_baliho set status='DISEWA' where kode_baliho in (SELECT kode_baliho FROM data_pemesanan where kode_pesan='"+kodePesan+"')";
+            stmt.executeQuery(query);
+            conn.commit();
+            System.out.println("Tambah Data Jadwal Berhasil");
+        } catch (SQLException exception) {
+            conn.rollback();
+            System.out.println("Tambah Data Jadwal Pertandingan gagal = " + exception.getMessage());
+            throw exception;
         }
     }
 }

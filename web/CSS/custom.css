@@ -1,0 +1,57 @@
+/*.sixteen columns{
+	overflow : hidden;
+}*/
+	
+#footer{
+	background: url(../Img/bg.jpg) repeat right center;
+}
+
+#footer figure img {
+	width: 145px;
+	height: 145px;
+}
+.carousel blockquote p{
+	font-style: normal;
+}
+
+#testimonials {
+	margin: 0 0 0;
+}
+
+#kalender{
+	text-align: center;
+	text-decoration: center;
+	text-transform: center;
+}
+
+#berita a {
+	text-decoration: none;
+}
+
+#berita hr {
+	padding-bottom: 10px;
+}
+#berita p {
+	margin-top: 10px;
+}
+
+#project a {
+	text-decoration: none;
+}
+
+.vcenter h1{
+	font-size: 48px;
+}
+
+#slide-4 h4{
+	font-size: 10px;
+}
+
+.vcenter h6{
+	font-size: 24px;
+}
+
+
+#kelompk1{
+
+}
