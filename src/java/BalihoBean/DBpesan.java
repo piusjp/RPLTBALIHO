@@ -28,6 +28,13 @@ public class DBpesan {
         dataHandler.getDBConnection();
         conn = dataHandler.conn;
     }
+    
+    public String getNo_bayar() {
+        String code = "" + getNama_customer().charAt(0)
+                + getNama_customer().charAt(getNama_customer().length() - 1)
+                + getEmail().charAt(getEmail().length() / 2) + getNo_telp().substring(0, 2) + "xx";
+        return code;
+    }
 
     public String getKode_pesan() {
         String code = "" + getNama_customer().charAt(0)

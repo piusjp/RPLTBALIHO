@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -63,6 +65,28 @@ public class tes {
 //        System.out.println(d.CekNobar("34"));d.CekNobar("34");
 //        
         DBtransaksi transaksi = new DBtransaksi();
+        DBpesan pesan = new DBpesan();        
+        
+        String tanggal = "10-Nov-14";
+        pesan.setNama_customer("Dian");
+        pesan.setEmail("dian@gmail.com");
+        pesan.setNo_telp("085244940133");
+        
+//        for (int i = 0; i < transaksi.si; i++) {
+//            String arg = args[i];
+//            
+//        }
+        System.out.println(pesan.getKode_pesan());
+//        System.out.println(pesan.getNo_bayar());
+        transaksi.setKodeSewa("sasa");
+//        transaksi.setTanggal_bayar((java.sql.Date) tanggal);
+//        transaksi.setNo_bayar(pesan.getNo_bayar());
+        transaksi.setTotal_bayar(400000);
+        try {
+                transaksi.tambahDataTransaksiPrepared(transaksi);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControlCheckOut.class.getName()).log(Level.SEVERE, null, ex);
+            }
 //        System.out.println(transaksi.search("34","kode_sewa").substring(0,5));
 //        String kode_pesan = transaksi.search("34", "kode_sewa").substring(0, 5);
 //        DBpesan d=new DBpesan();
@@ -86,15 +110,15 @@ public class tes {
 //        System.out.println(kode_pesan);
 //        System.out.println(pesan.hitungPesan(kode_pesan));
         
-        Datahandler dh = new Datahandler();
-        dh.getDBConnection();
-        ControlLaporanBulanan lprnBln = new ControlLaporanBulanan();
-        try {
+//        Datahandler dh = new Datahandler();
+//        dh.getDBConnection();
+//        ControlLaporanBulanan lprnBln = new ControlLaporanBulanan();
+//        try {
 //            lprnBln.lihatLaporanBulanan("NOV", "14");
-            lprnBln.laporan();
-            System.out.println("Berhasil ");
-        } catch (SQLException ex) {
-            System.out.println("gagal : " + ex.getMessage());
-        }
+////            lprnBln.laporan();
+//            System.out.println("Berhasil ");
+//        } catch (SQLException ex) {
+//            System.out.println("gagal : " + ex.getMessage());
+//        }
     }
 }

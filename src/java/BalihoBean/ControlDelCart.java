@@ -27,7 +27,7 @@ public class ControlDelCart extends HttpServlet{
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
-        ArrayList b = (ArrayList)session.getAttribute("cart");
+        ArrayList<ControlCart> b = (ArrayList<ControlCart>) session.getAttribute("cart");
         
         String kb = request.getParameter("kode");
         for (int i = 0; i < b.size(); i++) {

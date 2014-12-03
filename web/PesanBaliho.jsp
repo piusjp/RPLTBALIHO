@@ -1,3 +1,4 @@
+<%@page import="BalihoBean.ControlCart"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
 <!DOCTYPE html>
@@ -112,7 +113,7 @@
         <!-- END OF MODAL
         ================================================== -->
         <%
-            ArrayList a = (ArrayList) session.getAttribute("cart");
+            ArrayList<ControlCart> a = (ArrayList<ControlCart>) session.getAttribute("cart");
         %>
         <!-- Start - Used on #to-top click -->
         <div id="start"></div>
@@ -129,8 +130,8 @@
                                     <li><a href="Home.html" style="font-size:14px">Home</a></li>
                                     <li><a href="#berita" class="goto" style="font-size:14px">Baliho <i class="fa fa-angle-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a target="_blank" href="PesanBaliho.jsp">Lihat Baliho</a></li>
-                                            <li><a target="_blank" href="https://baliho.ugm.ac.id/daftarberita">Lihat Sewa</a></li>
+                                            <li><a href="PesanBaliho.jsp">Lihat Baliho</a></li>
+                                            <li><a href="https://baliho.ugm.ac.id/daftarberita">Lihat Sewa</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="Home.html#contact" class="goto" style="font-size:14px">Kontak</a></li>
@@ -149,8 +150,8 @@
                             <li><a href="Home.html" style="font-size:14px">Home</a></li>
                             <li><a href="#berita" class="goto" style="font-size:14px">Baliho <i class="fa fa-angle-down"></i></a>
                                 <ul class="sub-menu">
-                                    <li><a target="_blank" href="PesanBaliho.jsp">Lihat Baliho</a></li>
-                                    <li><a target="_blank" href="https://baliho.ugm.ac.id/daftarberita">Lihat Sewa</a></li>
+                                    <li><a href="PesanBaliho.jsp">Lihat Baliho</a></li>
+                                    <li><a href="https://baliho.ugm.ac.id/daftarberita">Lihat Sewa</a></li>
                                 </ul>
                             </li>
                             <li><a href="Home.html#contact" class="goto" style="font-size:14px">Kontak</a></li>
@@ -216,11 +217,14 @@
                 <div class="row">
                     <div class="sixteen columns" align="justify">
                         <h2 class="title" style="margin-top: 20px">Peraturan Penyewaan:</h2>
-                        <%if (session.getAttribute("cart") != null) {
+                        <%ArrayList<ControlCart> b = (ArrayList<ControlCart>) session.getAttribute("cart");
+                            if (b != null) {
                                 for (int i = 0; i < a.size(); i++) {%>
+                                <%=b%>
                         <%=a.get(i)%>
+                        <%=a.get(i).getKodeBaliho()%>
                         <form action="ControlDelCart" method="post">
-                            <input type="hidden" name="kode" value="<%=a.get(i)%>"/>
+                            <input type="hidden" name="kode" value="<%=a.get(i).getKodeBaliho()%>"/>
                             <input type="submit" value="Hapus"/>
                         </form>
                         <%
