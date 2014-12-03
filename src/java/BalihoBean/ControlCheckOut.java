@@ -19,8 +19,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import oracle.sql.DATE;
-
 /**
  *
  * @author HP
@@ -35,14 +33,14 @@ public class ControlCheckOut extends HttpServlet {
         
         DBpesan pesan = new DBpesan();
         HttpSession session = request.getSession();
-        ArrayList isiCart = (ArrayList) session.getAttribute("cart");
+        ArrayList<DBpesan> isiCart = (ArrayList<DBpesan>) session.getAttribute("cart");
         
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
         Date tomorrow = new Date(date.getTime() + (1000 * 60 * 60 * 48));
         
         for (int i = 0; i < isiCart.size(); i++) {
-            pesan.setKode_baliho((String) isiCart.get(i));
+            pesan.setKode_baliho((String) isiCart.get(i).getKode_baliho());
             pesan.setNama_customer(request.getParameter("nama"));
             pesan.setAlamat_customer(request.getParameter("alamat"));
             pesan.setNamaPerusahaan(request.getParameter("namaP"));
@@ -51,7 +49,7 @@ public class ControlCheckOut extends HttpServlet {
             pesan.setTanggal_mulai(request.getParameter("mulai"));
             pesan.setNo_telp(request.getParameter("no_telp"));
             pesan.setEmail(request.getParameter("email"));
-            pesan.setLamaSewa(Integer.parseInt(request.getParameter("lama")));
+            pesan.setLamaSewa(isiCart.get(i).getLamaSewa());
             try {
                 pesan.tambahDataPesanPrepared(pesan);
             } catch (SQLException ex) {
