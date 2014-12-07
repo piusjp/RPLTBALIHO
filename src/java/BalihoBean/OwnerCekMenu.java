@@ -30,7 +30,7 @@ public class OwnerCekMenu extends HttpServlet {
         } else if (tombolOwner.equals("Laporan Bulanan")) {
             response.sendRedirect("OwnerLaporanBulanan.jsp");
         } else if (tombolOwner.equals("Logout")) {
-            response.sendRedirect("OwnerFormLogin.jsp");
+            response.sendRedirect("Home.html");
         } else if (tombolOwner.equals("Menu Utama")) {
             response.sendRedirect("OwnerFormMenu.jsp");
         }

@@ -75,7 +75,7 @@ public class OwnerCekLaporan extends HttpServlet {
                 laporanBulanan.lihatLaporanBulanan(bulan, tahun);
                 response.sendRedirect("OwnerLaporanBulanan.jsp?laporan=y");
             } catch (SQLException ex){
-                response.sendRedirect("OwnerLaporanBulanan.jsp?laporan=n");
+                response.sendRedirect("OwnerPilihPeriode.jsp?error=y");
             }
             
         }

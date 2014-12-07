@@ -16,9 +16,9 @@ import java.sql.Statement;
  */
 public class DBsewa {
 
-    private String kode_sewa, kode_baliho,
-            nama_customer, alamat_customer, namaPerusahaan, alamatPerusahaan,
+    private String kode_sewa, nama_customer, alamat_customer, namaPerusahaan, alamatPerusahaan,
             tanggal_mulai, tanggal_berakhir, no_telp, email;
+    private DBbaliho kode_baliho;
     Connection conn;
     DBbaliho db=new DBbaliho();
     DBpesan pesan=new DBpesan();
@@ -35,14 +35,6 @@ public class DBsewa {
 
     public void setKode_sewa(String kode_sewa) {
         this.kode_sewa = kode_sewa;
-    }
-
-    public String getKode_baliho() {
-        return kode_baliho;
-    }
-
-    public void setKode_baliho(String kode_baliho) {
-        this.kode_baliho = kode_baliho;
     }
 
     public String getNama_customer() {
@@ -139,5 +131,13 @@ public class DBsewa {
             System.out.println("Tambah Data Jadwal Pertandingan gagal = " + exception.getMessage());
             throw exception;
         }
+    }
+
+    public DBbaliho getKode_baliho() {
+        return kode_baliho;
+    }
+
+    public void setKode_baliho(DBbaliho kode_baliho) {
+        this.kode_baliho = kode_baliho;
     }
 }

@@ -19,7 +19,8 @@ import java.util.Date;
 public class DBtransaksi {
 
     private int total_bayar;
-    private String kodeSewa, no_bayar;
+    private String no_bayar;
+    private DBsewa kodeSewa;
     private Date tanggal_bayar;
 
     Connection conn;
@@ -54,11 +55,11 @@ public class DBtransaksi {
         this.total_bayar = total_bayar;
     }
 
-    public String getKodeSewa() {
+    public DBsewa getKodeSewa() {
         return kodeSewa;
     }
 
-    public void setKodeSewa(String kodeSewa) {
+    public void setKodeSewa(DBsewa kodeSewa) {
         this.kodeSewa = kodeSewa;
     }
 
@@ -80,7 +81,7 @@ public class DBtransaksi {
             String sql = "INSERT INTO DATA_TRANSAKSI(NO_PEMBAYARAN, KODE_SEWA, TANGGAL_BAYAR, TOTAL_BAYAR) VALUES (?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, dp.getNo_bayar());
-            pstmt.setString(2, dataTransaksi.getKodeSewa());
+            pstmt.setString(2, dataTransaksi.getKodeSewa().getKode_sewa());
             pstmt.setDate(3, (java.sql.Date) dataTransaksi.getTanggal_bayar());
             pstmt.setInt(4, dataTransaksi.getTotal_bayar());
             pstmt.executeUpdate();
