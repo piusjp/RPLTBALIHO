@@ -122,7 +122,7 @@ public class tes {
 //        }
         ControlLaporanBulanan clb = new ControlLaporanBulanan();
         
-//        clb.cekBulan("NOV", "14");
-        clb.lihatLaporanBulanan("NOV", "14");
+        clb.cekBulan("NOV", "14");
+//        clb.lihatLaporanBulanan("nov", "14");
     }
 }

@@ -2,7 +2,6 @@
 package BalihoBean;
 //#!$@%$%(^^
 import java.sql.*;
-import javax.swing.JOptionPane;
 import oracle.jdbc.pool.OracleDataSource;
 
 public class Datahandler {
@@ -22,7 +21,7 @@ public class Datahandler {
             conn = ds.getConnection(userid, password);
             System.out.println("Koneksi sip no..");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Gagal Koneksi");
+            System.out.println("Gagal Koneksi");
         }
     }
     public void close() {

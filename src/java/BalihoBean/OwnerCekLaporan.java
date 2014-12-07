@@ -29,31 +29,32 @@ public class OwnerCekLaporan extends HttpServlet {
         String tahunPilih = request.getParameter("pilihTahun");
         String bulan = null;
         String tahun = null;
-
+        boolean status;
+        
         if (bulanPilih.equals("januari")) {
-            bulan = "jan";
+            bulan = "JAN";
         } else if (bulanPilih.equals("februari")) {
-            bulan = "feb";
+            bulan = "FEB";
         } else if (bulanPilih.equals("maret")) {
-            bulan = "mar";
+            bulan = "MAR";
         } else if (bulanPilih.equals("april")) {
-            bulan = "apr";
+            bulan = "APR";
         } else if (bulanPilih.equals("mei")) {
-            bulan = "may";
+            bulan = "MAY";
         } else if (bulanPilih.equals("juni")) {
-            bulan = "jun";
+            bulan = "JUN";
         } else if (bulanPilih.equals("juli")) {
-            bulan = "jul";
+            bulan = "JUL";
         } else if (bulanPilih.equals("agustus")) {
-            bulan = "aug";
+            bulan = "AUG";
         } else if (bulanPilih.equals("september")) {
-            bulan = "sep";
+            bulan = "SEP";
         } else if (bulanPilih.equals("oktober")) {
-            bulan = "oct";
+            bulan = "OCT";
         } else if (bulanPilih.equals("november")) {
-            bulan = "nov";
+            bulan = "NOV";
         } else if (bulanPilih.equals("desember")) {
-            bulan = "dec";
+            bulan = "DEC";
         }
 
         if (tahunPilih.equals("2012")) {
@@ -67,17 +68,23 @@ public class OwnerCekLaporan extends HttpServlet {
         }
 
         if (request.getParameter("submitLaporan").equals("Submit")) {
-            HttpSession session = request.getSession();
-            session.setAttribute("plhBln", bulanPilih);
-            session.setAttribute("plhThn", tahunPilih);
-            try{
-                ControlLaporanBulanan laporanBulanan = new ControlLaporanBulanan();
-                laporanBulanan.lihatLaporanBulanan(bulan, tahun);
-                response.sendRedirect("OwnerLaporanBulanan.jsp?laporan=y");
-            } catch (SQLException ex){
+            ControlLaporanBulanan laporanBulanan = new ControlLaporanBulanan();
+            try {
+                status = laporanBulanan.cekBulan(bulan, tahun);
+                if (status == true) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("plhBln", bulan);
+                    session.setAttribute("plhThn", tahun);
+                    response.sendRedirect("OwnerLaporanBulanan.jsp");
+                } else {
+                    response.sendRedirect("OwnerPilihPeriode.jsp?error=y");
+                }
+            } catch (SQLException ex) {
+                response.sendRedirect("OwnerPilihPeriode.jsp?error=y");
+            } catch (NullPointerException nul) {
                 response.sendRedirect("OwnerPilihPeriode.jsp?error=y");
             }
-            
+
         }
     }
 

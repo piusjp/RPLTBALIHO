@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -24,15 +25,18 @@ public class OwnerCekMenu extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String tombolOwner = request.getParameter("tombolMenuOwner");
-
+        HttpSession session = null;
         if (tombolOwner.equals("Lihat Baliho")) {
             response.sendRedirect("OwnerLihatBaliho.jsp");
         } else if (tombolOwner.equals("Laporan Bulanan")) {
-            response.sendRedirect("OwnerLaporanBulanan.jsp");
+            response.sendRedirect("OwnerPilihPeriode.jsp");
         } else if (tombolOwner.equals("Logout")) {
             response.sendRedirect("Home.html");
         } else if (tombolOwner.equals("Menu Utama")) {
             response.sendRedirect("OwnerFormMenu.jsp");
+        } else if (tombolOwner.equals("Kembali")) {
+//            session.invalidate();
+            response.sendRedirect("OwnerPilihPeriode.jsp");
         }
     }
 
